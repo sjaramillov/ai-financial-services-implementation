@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "AI Evaluation Lab · ciclo controlado",
+    "subtitle": "Ejercicio B · diseño conceptual separado de operaciones",
+    "animation": "none",
+    "visual_preset": "classic",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "dedup",
+        "label": "Reserva y concurrencia",
+        "focus": [
+          "manifest",
+          "catalog",
+          "scheduler",
+          "executor"
+        ],
+        "note": "La unicidad se impone atómicamente, no mediante una consulta previa."
+      },
+      {
+        "id": "result-path",
+        "label": "Evidencia y evaluación",
+        "focus": [
+          "executor",
+          "catalog",
+          "result",
+          "review",
+          "metrics"
+        ],
+        "note": "Los resultados publicados conservan manifiesto y hashes."
+      },
+      {
+        "id": "cleanup-path",
+        "label": "Limpieza independiente",
+        "focus": [
+          "executor",
+          "cleanup",
+          "catalog"
+        ],
+        "note": "Una limpieza fallida no borra ni convierte el resultado."
+      }
+    ],
+    "viewBox": [
+      1200,
+      660
+    ]
+  },
+  "components": [
+    {
+      "id": "researcher",
+      "type": "external",
+      "label": "Evaluador",
+      "sublabel": "Pregunta e hipótesis",
+      "pos": [
+        40,
+        290
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "manifest",
+      "type": "frontend",
+      "label": "Manifiesto",
+      "sublabel": "Dataset + política + seed",
+      "pos": [
+        320,
+        290
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "catalog",
+      "type": "database",
+      "label": "Catálogo canónico",
+      "sublabel": "Reserva única atómica",
+      "pos": [
+        600,
+        290
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "scheduler",
+      "type": "messagebus",
+      "label": "Planificador",
+      "sublabel": "Lease + fencing",
+      "pos": [
+        880,
+        290
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "review",
+      "type": "external",
+      "label": "Revisión humana",
+      "sublabel": "Criterios y límites",
+      "pos": [
+        320,
+        70
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "result",
+      "type": "database",
+      "label": "Resultados",
+      "sublabel": "Hashes + procedencia",
+      "pos": [
+        600,
+        70
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "executor",
+      "type": "backend",
+      "label": "Ejecutor aislado",
+      "sublabel": "Presupuesto y scopes",
+      "pos": [
+        880,
+        520
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "cleanup",
+      "type": "backend",
+      "label": "Limpieza",
+      "sublabel": "Estado independiente",
+      "pos": [
+        600,
+        520
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "metrics",
+      "type": "database",
+      "label": "Métricas / tablero",
+      "sublabel": "Proyección del catálogo",
+      "pos": [
+        880,
+        70
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    }
+  ],
+  "connections": [
+    {
+      "id": "researcher-to-manifest",
+      "from": "researcher",
+      "to": "manifest",
+      "label": "Caso versionado",
+      "variant": "emphasis",
+      "route": "auto"
+    },
+    {
+      "id": "manifest-to-catalog",
+      "from": "manifest",
+      "to": "catalog",
+      "label": "Reserva run_key",
+      "variant": "emphasis",
+      "route": "auto"
+    },
+    {
+      "id": "catalog-to-scheduler",
+      "from": "catalog",
+      "to": "scheduler",
+      "label": "Despacho durable",
+      "variant": "dashed",
+      "route": "auto"
+    },
+    {
+      "id": "scheduler-to-executor",
+      "from": "scheduler",
+      "to": "executor",
+      "label": "Lease vigente",
+      "variant": "security",
+      "route": "auto",
+      "labelAt": [
+        978,
+        445
+      ]
+    },
+    {
+      "id": "executor-to-cleanup",
+      "from": "executor",
+      "to": "cleanup",
+      "label": "Finalización",
+      "variant": "dashed",
+      "route": "auto"
+    },
+    {
+      "id": "cleanup-to-catalog",
+      "from": "cleanup",
+      "to": "catalog",
+      "label": "Cleanup_status",
+      "variant": "dashed",
+      "route": "auto"
+    },
+    {
+      "id": "executor-to-result",
+      "from": "executor",
+      "to": "result",
+      "label": "Artefactos + hash",
+      "variant": "dashed",
+      "route": "auto",
+      "fromSide": "right",
+      "toSide": "top",
+      "labelAt": [
+        1120,
+        440
+      ],
+      "via": [
+        [
+          1140,
+          556
+        ],
+        [
+          1140,
+          18
+        ],
+        [
+          698,
+          18
+        ]
+      ]
+    },
+    {
+      "id": "catalog-to-result",
+      "from": "catalog",
+      "to": "result",
+      "label": "Commit del resultado",
+      "variant": "emphasis",
+      "route": "auto"
+    },
+    {
+      "id": "result-to-review",
+      "from": "result",
+      "to": "review",
+      "label": "Evidencia reproducible",
+      "variant": "emphasis",
+      "route": "auto",
+      "labelAt": [
+        558,
+        50
+      ]
+    },
+    {
+      "id": "result-to-metrics",
+      "from": "result",
+      "to": "metrics",
+      "label": "Proyección",
+      "variant": "dashed",
+      "route": "auto"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Experimento",
+      "items": [
+        "Una run_key reserva una ejecución lógica.",
+        "El catálogo decide; el tablero solo proyecta."
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Resultado",
+      "items": [
+        "Publicar resultado requiere lease y fencing vigentes.",
+        "Evaluación, ejecución y limpieza tienen estados distintos."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Evaluación",
+      "items": [
+        "Fijar criterios y separar desarrollo de evaluación.",
+        "Sin datos reales, efectos financieros ni credenciales."
+      ]
+    }
+  ]
+}

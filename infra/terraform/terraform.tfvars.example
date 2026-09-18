@@ -1,0 +1,20 @@
+# PUBLIC EXAMPLE — intentionally invalid; never place credentials in this file.
+# Copy to terraform.tfvars only for an independently reviewed deployment.
+# CHANGE every REPLACE_* value. Do not commit the resulting private file.
+region              = "REPLACE_WITH_APPROVED_AWS_REGION"
+expected_account_id = "REPLACE_WITH_12_DIGIT_ACCOUNT_ID"
+resource_prefix     = "REPLACE_WITH_UNIQUE_RESOURCE_PREFIX"
+
+# CHANGE to existing SAME-ACCOUNT roles; these must be different identities.
+runtime_trusted_role_arn = "REPLACE_WITH_EXISTING_RUNTIME_IAM_ROLE_ARN"
+audit_trusted_role_arn   = "REPLACE_WITH_EXISTING_AUDIT_IAM_ROLE_ARN"
+
+# CHANGE if using a named local short-lived SSO/assume-role profile.
+# Null uses the standard AWS credential chain. No access keys belong in Git.
+aws_profile = null
+
+# CHANGE after reviewing your synthetic exercise's retention requirements.
+log_retention_days = 30
+
+# No az/CIDR/IP/ENI values are required: this module creates no network.
+# account1 / az-1 / az-2 in diagrams are conceptual labels, not deployable IDs.

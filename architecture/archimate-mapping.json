@@ -1,0 +1,150 @@
+{
+  "views": [
+    "conceptual",
+    "target-cloud",
+    "evaluation-lab"
+  ],
+  "elements": {
+    "operator": "BusinessActor",
+    "channel": "ApplicationComponent",
+    "controller": "ApplicationComponent",
+    "record": "DataObject",
+    "identity": "ApplicationService",
+    "reviewer": "BusinessRole",
+    "policy": "ApplicationComponent",
+    "agent": "ApplicationComponent",
+    "tools": "ApplicationComponent",
+    "audit": "DataObject",
+    "user": "BusinessActor",
+    "gateway": "ApplicationComponent",
+    "cloud_control": "ApplicationComponent",
+    "domain_store": "DataObject",
+    "cloud_identity": "ApplicationService",
+    "cloud_policy": "ApplicationComponent",
+    "cloud_audit": "DataObject",
+    "queue": "ApplicationComponent",
+    "worker": "ApplicationComponent",
+    "model_api": "ApplicationService",
+    "researcher": "BusinessActor",
+    "manifest": "ApplicationComponent",
+    "catalog": "ApplicationComponent",
+    "scheduler": "ApplicationComponent",
+    "review": "BusinessRole",
+    "result": "DataObject",
+    "executor": "ApplicationComponent",
+    "cleanup": "ApplicationComponent",
+    "metrics": "DataObject"
+  },
+  "relationships": {
+    "operator-to-channel": {
+      "type": "Association"
+    },
+    "identity-to-channel": {
+      "type": "Serving"
+    },
+    "channel-to-controller": {
+      "type": "Flow"
+    },
+    "reviewer-to-controller": {
+      "type": "Association"
+    },
+    "policy-to-controller": {
+      "type": "Flow"
+    },
+    "controller-to-record": {
+      "type": "Access",
+      "accessType": "ReadWrite"
+    },
+    "channel-to-agent": {
+      "type": "Flow"
+    },
+    "agent-to-tools": {
+      "type": "Flow"
+    },
+    "tools-to-controller": {
+      "type": "Flow"
+    },
+    "controller-to-audit": {
+      "type": "Access",
+      "accessType": "Write"
+    },
+    "record-to-audit": {
+      "type": "Association"
+    },
+    "user-to-gateway": {
+      "type": "Association"
+    },
+    "cloud_identity-to-gateway": {
+      "type": "Serving"
+    },
+    "gateway-to-cloud_control": {
+      "type": "Flow"
+    },
+    "cloud_policy-to-cloud_control": {
+      "type": "Flow"
+    },
+    "cloud_control-to-domain_store": {
+      "type": "Access",
+      "accessType": "ReadWrite"
+    },
+    "domain_store-to-cloud_audit": {
+      "type": "Association"
+    },
+    "cloud_control-to-queue": {
+      "type": "Flow"
+    },
+    "queue-to-worker": {
+      "type": "Flow"
+    },
+    "worker-to-model_api": {
+      "type": "Flow"
+    },
+    "worker-to-cloud_control": {
+      "type": "Flow"
+    },
+    "researcher-to-manifest": {
+      "type": "Association"
+    },
+    "manifest-to-catalog": {
+      "type": "Flow"
+    },
+    "catalog-to-scheduler": {
+      "type": "Flow"
+    },
+    "scheduler-to-executor": {
+      "type": "Flow"
+    },
+    "executor-to-cleanup": {
+      "type": "Flow"
+    },
+    "cleanup-to-catalog": {
+      "type": "Flow"
+    },
+    "executor-to-result": {
+      "type": "Access",
+      "accessType": "Write"
+    },
+    "catalog-to-result": {
+      "type": "Access",
+      "accessType": "Write"
+    },
+    "result-to-review": {
+      "type": "Association"
+    },
+    "result-to-metrics": {
+      "type": "Association"
+    }
+  },
+  "notes": {
+    "agent": "Produce propuestas sin credencial de efecto. Un gateway valida herramienta, argumentos y scopes antes de invocar.",
+    "controller": "Revalida identidad, tenant, estado, política, base habilitante y aprobación vigente antes de cada efecto. La idempotencia y la conciliación se ejecutan aquí.",
+    "record": "Representa el dato autorizado; el adaptador y motor que lo custodian se abstraen en esta vista conceptual.",
+    "audit": "Registro de eventos estructurados con política de acceso y retención por definir; no se presume inmutabilidad.",
+    "worker": "Representa el mismo componente lógico desplegable en az-1 y az-2; la vista no acredita dos instancias ni aislamiento. La elección de runtime es una decisión pendiente.",
+    "catalog": "Servicio con almacén transaccional. Reserva atómica por run_key, lease con fencing y commit del resultado; único escritor autorizado para estado del experimento.",
+    "cleanup": "Cuenta con privilegios acotados a recursos efímeros del experimento. Conserva cleanup_status separado de execution_status y test_result; no elimina resultados publicados.",
+    "cloud_audit": "Archivo de evidencia separado del estado de dominio. Retención, acceso del auditor y protección contra modificación requieren implementación y prueba.",
+    "cloud_control": "Rol de dominio separado del worker. Un callback del worker entrega una propuesta; no es autorización ni puede elegir otra identidad.",
+    "tools": "Únicamente lecturas permitidas. El controlador de dominio no está expuesto como una herramienta privilegiada del modelo."
+  }
+}

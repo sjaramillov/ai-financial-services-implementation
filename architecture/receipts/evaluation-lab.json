@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "architecture/evaluation-lab.architecture.json",
+  "output": "architecture/evaluation-lab.html",
+  "specification": {
+    "sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+    "bytes": 6453
+  },
+  "artifact": {
+    "sha256": "8f019fd4699dc381d1b72cd1bcbab6440abc791c92751335614d51daf8c55f83",
+    "bytes": 716284
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "public_receipt_note": "Only input/output paths normalized to repository-relative paths; artifact and specification bytes are unchanged.",
+  "visual_review": "desktop reviewed; outer artifact route and label visible after explicit viewBox correction",
+  "browser_behavior": "loaded and rendered in desktop browser; guided controls not exhaustively tested",
+  "correction_rounds": 2
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "architecture/conceptual.architecture.json",
+  "output": "architecture/conceptual.html",
+  "specification": {
+    "sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+    "bytes": 6815
+  },
+  "artifact": {
+    "sha256": "2714508d6a568d69da7af4c848285667ac4552f57688ebf64e8614f407d81790",
+    "bytes": 718240
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "public_receipt_note": "Only input/output paths normalized to repository-relative paths; artifact and specification bytes are unchanged.",
+  "visual_review": "passed: desktop screenshot inspected by integration reviewer; mobile not checked",
+  "browser_behavior": "loaded and rendered; guided chapter selection verified",
+  "correction_rounds": 2,
+  "browser_scope_note": "Other interactive controls were not exhaustively tested. Review reported by integration reviewer on 2026-09-18."
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "architecture/target-cloud.architecture.json",
+  "output": "architecture/target.html",
+  "specification": {
+    "sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+    "bytes": 7096
+  },
+  "artifact": {
+    "sha256": "6a3ce30d8fd155acc86c52ab54e4100d3ebcf7a1c84eb2f36a26f6a220ef5731",
+    "bytes": 719656
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  },
+  "public_receipt_note": "Only input/output paths normalized to repository-relative paths; artifact and specification bytes are unchanged.",
+  "visual_review": "passed: desktop screenshot inspected by integration reviewer; mobile not checked",
+  "browser_behavior": "loaded and rendered",
+  "correction_rounds": 1,
+  "browser_scope_note": "Other interactive controls were not exhaustively tested. Review reported by integration reviewer on 2026-09-18."
+}

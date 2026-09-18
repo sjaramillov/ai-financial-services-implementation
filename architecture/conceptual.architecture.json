@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "AI bajo control · arquitectura conceptual",
+    "subtitle": "Ejercicio A · asistente de operaciones · objetivo propuesto",
+    "animation": "none",
+    "visual_preset": "classic",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "authority",
+        "label": "Quién puede actuar",
+        "focus": [
+          "operator",
+          "channel",
+          "controller",
+          "record",
+          "reviewer"
+        ],
+        "note": "El control de negocio vive fuera del modelo."
+      },
+      {
+        "id": "proposal",
+        "label": "Propuesta y evidencia",
+        "focus": [
+          "channel",
+          "agent",
+          "tools",
+          "controller"
+        ],
+        "note": "Lecturas acotadas y evidencia verificable."
+      },
+      {
+        "id": "governance",
+        "label": "Política y trazabilidad",
+        "focus": [
+          "identity",
+          "policy",
+          "controller",
+          "audit",
+          "record"
+        ],
+        "note": "Ante incertidumbre de autoridad o estado, abstenerse."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "operator",
+      "type": "external",
+      "label": "Operador",
+      "sublabel": "Solicitud y finalidad",
+      "pos": [
+        40,
+        290
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "channel",
+      "type": "frontend",
+      "label": "Canal de atención",
+      "sublabel": "Datos mínimos",
+      "pos": [
+        320,
+        290
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "controller",
+      "type": "security",
+      "label": "Control de dominio",
+      "sublabel": "Autoriza cada efecto",
+      "pos": [
+        600,
+        290
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "record",
+      "type": "database",
+      "label": "Sistema de registro",
+      "sublabel": "Verdad de la operación",
+      "pos": [
+        880,
+        290
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "identity",
+      "type": "security",
+      "label": "Identidad",
+      "sublabel": "Roles y sesión vigentes",
+      "pos": [
+        320,
+        80
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "reviewer",
+      "type": "external",
+      "label": "Revisor humano",
+      "sublabel": "Aprobación vinculada",
+      "pos": [
+        600,
+        80
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "policy",
+      "type": "security",
+      "label": "Política y parada",
+      "sublabel": "Reglas versionadas",
+      "pos": [
+        880,
+        80
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "agent",
+      "type": "backend",
+      "label": "Agente y modelo",
+      "sublabel": "Propuesta estructurada",
+      "pos": [
+        320,
+        520
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "tools",
+      "type": "backend",
+      "label": "Herramientas",
+      "sublabel": "Lecturas permitidas",
+      "pos": [
+        600,
+        520
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "audit",
+      "type": "database",
+      "label": "Auditoría",
+      "sublabel": "Eventos correlacionados",
+      "pos": [
+        880,
+        520
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    }
+  ],
+  "connections": [
+    {
+      "id": "operator-to-channel",
+      "from": "operator",
+      "to": "channel",
+      "label": "HTTPS",
+      "variant": "emphasis",
+      "route": "auto"
+    },
+    {
+      "id": "identity-to-channel",
+      "from": "identity",
+      "to": "channel",
+      "label": "OIDC + PKCE",
+      "variant": "security",
+      "route": "auto",
+      "labelAt": [
+        418,
+        215
+      ]
+    },
+    {
+      "id": "channel-to-controller",
+      "from": "channel",
+      "to": "controller",
+      "label": "Solicitud + versión",
+      "variant": "emphasis",
+      "route": "auto",
+      "labelAt": [
+        558,
+        270
+      ]
+    },
+    {
+      "id": "reviewer-to-controller",
+      "from": "reviewer",
+      "to": "controller",
+      "label": "Aprueba hash + plazo",
+      "variant": "security",
+      "route": "auto",
+      "labelAt": [
+        698,
+        215
+      ]
+    },
+    {
+      "id": "policy-to-controller",
+      "from": "policy",
+      "to": "controller",
+      "label": "Evalúa + fail closed",
+      "variant": "security",
+      "route": "auto"
+    },
+    {
+      "id": "controller-to-record",
+      "from": "controller",
+      "to": "record",
+      "label": "Efecto idempotente",
+      "variant": "emphasis",
+      "route": "auto",
+      "labelAt": [
+        910,
+        382
+      ]
+    },
+    {
+      "id": "channel-to-agent",
+      "from": "channel",
+      "to": "agent",
+      "label": "Contexto permitido",
+      "variant": "dashed",
+      "route": "auto",
+      "labelAt": [
+        418,
+        445
+      ]
+    },
+    {
+      "id": "agent-to-tools",
+      "from": "agent",
+      "to": "tools",
+      "label": "Allowlist + scopes",
+      "variant": "security",
+      "route": "auto",
+      "labelAt": [
+        558,
+        510
+      ]
+    },
+    {
+      "id": "tools-to-controller",
+      "from": "tools",
+      "to": "controller",
+      "label": "Evidencia + propuesta",
+      "variant": "dashed",
+      "route": "auto"
+    },
+    {
+      "id": "controller-to-audit",
+      "from": "controller",
+      "to": "audit",
+      "label": "Decisión y resultado",
+      "variant": "dashed",
+      "route": "auto"
+    },
+    {
+      "id": "record-to-audit",
+      "from": "record",
+      "to": "audit",
+      "label": "Conciliación",
+      "variant": "dashed",
+      "route": "auto",
+      "labelAt": [
+        978,
+        445
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Autoridad",
+      "items": [
+        "El modelo propone; el controlador decide.",
+        "La aprobación se liga a versión, hash y caducidad."
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Efectos",
+      "items": [
+        "Un timeout exige conciliación antes de reintentar.",
+        "La parada bloquea efectos nuevos."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Datos",
+      "items": [
+        "Finalidad y base habilitante antes de consultar.",
+        "Auditar decisiones, nunca secretos ni razonamiento interno."
+      ]
+    }
+  ]
+}

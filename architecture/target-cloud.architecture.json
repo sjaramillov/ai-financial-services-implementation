@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Objetivo cloud · límites de confianza",
+    "subtitle": "Ejercicio A · cuenta1 / region-1 · alternativa AWS propuesta",
+    "animation": "none",
+    "visual_preset": "classic",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "entry",
+        "label": "Ingreso y autoridad",
+        "focus": [
+          "user",
+          "cloud_identity",
+          "gateway",
+          "cloud_control",
+          "cloud_policy"
+        ],
+        "note": "Autenticación y autorización de dominio son controles distintos."
+      },
+      {
+        "id": "async",
+        "label": "Trabajo asíncrono",
+        "focus": [
+          "cloud_control",
+          "queue",
+          "worker",
+          "model_api"
+        ],
+        "note": "Dedupe, presupuesto, DLQ y reconciliador son requisitos de ejecución."
+      },
+      {
+        "id": "records",
+        "label": "Estado y auditoría",
+        "focus": [
+          "cloud_control",
+          "domain_store",
+          "cloud_audit"
+        ],
+        "note": "Estado transaccional y archivo de auditoría tienen permisos distintos."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "user",
+      "type": "external",
+      "label": "Usuario autorizado",
+      "sublabel": "Navegador",
+      "pos": [
+        40,
+        300
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "gateway",
+      "type": "security",
+      "label": "Ingreso administrado",
+      "sublabel": "API + límites de uso",
+      "pos": [
+        320,
+        300
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "cloud_control",
+      "type": "backend",
+      "label": "Controlador",
+      "sublabel": "Rol de dominio",
+      "pos": [
+        600,
+        300
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "domain_store",
+      "type": "database",
+      "label": "Estado de dominio",
+      "sublabel": "Transacción condicional",
+      "pos": [
+        880,
+        300
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "cloud_identity",
+      "type": "security",
+      "label": "Identidad federada",
+      "sublabel": "MFA según riesgo",
+      "pos": [
+        320,
+        70
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "cloud_policy",
+      "type": "security",
+      "label": "Política / kill switch",
+      "sublabel": "Versión y vigencia",
+      "pos": [
+        600,
+        70
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "cloud_audit",
+      "type": "database",
+      "label": "Archivo de auditoría",
+      "sublabel": "Acceso y retención",
+      "pos": [
+        880,
+        70
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "queue",
+      "type": "messagebus",
+      "label": "Cola + fallos",
+      "sublabel": "Reintentos acotados",
+      "pos": [
+        320,
+        530
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "worker",
+      "type": "backend",
+      "label": "Worker · az-1 / az-2",
+      "sublabel": "Dos ubicaciones objetivo",
+      "pos": [
+        600,
+        530
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    },
+    {
+      "id": "model_api",
+      "type": "cloud",
+      "label": "Modelo administrado",
+      "sublabel": "Salida sin autoridad",
+      "pos": [
+        880,
+        530
+      ],
+      "size": [
+        196,
+        72
+      ],
+      "tag": "PROPUESTA"
+    }
+  ],
+  "connections": [
+    {
+      "id": "user-to-gateway",
+      "from": "user",
+      "to": "gateway",
+      "label": "HTTPS",
+      "variant": "emphasis",
+      "route": "auto"
+    },
+    {
+      "id": "cloud_identity-to-gateway",
+      "from": "cloud_identity",
+      "to": "gateway",
+      "label": "JWT validado",
+      "variant": "security",
+      "route": "auto",
+      "labelAt": [
+        418,
+        215
+      ]
+    },
+    {
+      "id": "gateway-to-cloud_control",
+      "from": "gateway",
+      "to": "cloud_control",
+      "label": "Identidad + tenant",
+      "variant": "security",
+      "route": "auto",
+      "labelAt": [
+        558,
+        282
+      ]
+    },
+    {
+      "id": "cloud_policy-to-cloud_control",
+      "from": "cloud_policy",
+      "to": "cloud_control",
+      "label": "Check antes de efecto",
+      "variant": "security",
+      "route": "auto",
+      "labelAt": [
+        698,
+        215
+      ]
+    },
+    {
+      "id": "cloud_control-to-domain_store",
+      "from": "cloud_control",
+      "to": "domain_store",
+      "label": "Clave + versión",
+      "variant": "emphasis",
+      "route": "auto"
+    },
+    {
+      "id": "domain_store-to-cloud_audit",
+      "from": "domain_store",
+      "to": "cloud_audit",
+      "label": "Eventos / outbox",
+      "variant": "dashed",
+      "route": "auto"
+    },
+    {
+      "id": "cloud_control-to-queue",
+      "from": "cloud_control",
+      "to": "queue",
+      "label": "Trabajo asíncrono",
+      "variant": "dashed",
+      "route": "auto"
+    },
+    {
+      "id": "queue-to-worker",
+      "from": "queue",
+      "to": "worker",
+      "label": "Entrega ≥ 1 vez",
+      "variant": "dashed",
+      "route": "auto",
+      "labelAt": [
+        558,
+        620
+      ]
+    },
+    {
+      "id": "worker-to-model_api",
+      "from": "worker",
+      "to": "model_api",
+      "label": "TLS · datos mínimos",
+      "variant": "security",
+      "route": "auto",
+      "labelAt": [
+        838,
+        512
+      ]
+    },
+    {
+      "id": "worker-to-cloud_control",
+      "from": "worker",
+      "to": "cloud_control",
+      "label": "Propuesta validable",
+      "variant": "dashed",
+      "route": "auto"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Ubicación",
+      "items": [
+        "cuenta1 y region-1 son aliases de diseño.",
+        "Servicios regionales fuera de subredes del cliente."
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Identidades",
+      "items": [
+        "Roles separados: operador, CI, worker y dominio.",
+        "Egreso permitido por destino; sin permisos de escritura del modelo."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Continuidad",
+      "items": [
+        "az-1 / az-2 expresan intención; HA pendiente de prueba.",
+        "Definir RPO, RTO, retención y restore antes de piloto."
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "cuenta1 · region-1 · objetivo sin despliegue",
+      "wraps": [
+        "gateway",
+        "cloud_identity",
+        "cloud_control",
+        "cloud_policy",
+        "domain_store",
+        "cloud_audit",
+        "queue",
+        "worker",
+        "model_api"
+      ],
+      "pad": 22
+    }
+  ]
+}

@@ -1,0 +1,685 @@
+<?xml version='1.0' encoding='utf-8'?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" identifier="model-financial-ai-controls" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ https://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd">
+  <name xml:lang="es">Controles de IA en servicios financieros</name>
+  <documentation>Diseño propuesto con datos sintéticos. Dos ejercicios independientes: asistente de operaciones y AI Evaluation Lab. No acredita despliegue, cumplimiento ni disponibilidad. Fuente editable: tres JSON Archify y su mapeo semántico explícito.</documentation>
+  <elements>
+    <element identifier="operator" xsi:type="BusinessActor">
+      <name xml:lang="es">Operador</name>
+      <documentation>Solicitud y finalidad. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>conceptual.architecture.json#operator</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="channel" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Canal de atención</name>
+      <documentation>Datos mínimos. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>conceptual.architecture.json#channel</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="controller" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Control de dominio</name>
+      <documentation>Autoriza cada efecto. Estado: propuesta. Revalida identidad, tenant, estado, política, base habilitante y aprobación vigente antes de cada efecto. La idempotencia y la conciliación se ejecutan aquí.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>conceptual.architecture.json#controller</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="record" xsi:type="DataObject">
+      <name xml:lang="es">Sistema de registro</name>
+      <documentation>Verdad de la operación. Estado: propuesta. Representa el dato autorizado; el adaptador y motor que lo custodian se abstraen en esta vista conceptual.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>conceptual.architecture.json#record</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="identity" xsi:type="ApplicationService">
+      <name xml:lang="es">Identidad</name>
+      <documentation>Roles y sesión vigentes. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>conceptual.architecture.json#identity</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="reviewer" xsi:type="BusinessRole">
+      <name xml:lang="es">Revisor humano</name>
+      <documentation>Aprobación vinculada. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>conceptual.architecture.json#reviewer</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="policy" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Política y parada</name>
+      <documentation>Reglas versionadas. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>conceptual.architecture.json#policy</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="agent" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Agente y modelo</name>
+      <documentation>Propuesta estructurada. Estado: propuesta. Produce propuestas sin credencial de efecto. Un gateway valida herramienta, argumentos y scopes antes de invocar.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>conceptual.architecture.json#agent</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="tools" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Herramientas</name>
+      <documentation>Lecturas permitidas. Estado: propuesta. Únicamente lecturas permitidas. El controlador de dominio no está expuesto como una herramienta privilegiada del modelo.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>conceptual.architecture.json#tools</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="audit" xsi:type="DataObject">
+      <name xml:lang="es">Auditoría</name>
+      <documentation>Eventos correlacionados. Estado: propuesta. Registro de eventos estructurados con política de acceso y retención por definir; no se presume inmutabilidad.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>conceptual.architecture.json#audit</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="user" xsi:type="BusinessActor">
+      <name xml:lang="es">Usuario autorizado</name>
+      <documentation>Navegador. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>target-cloud.architecture.json#user</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="gateway" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Ingreso administrado</name>
+      <documentation>API + límites de uso. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>target-cloud.architecture.json#gateway</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="cloud_control" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Controlador</name>
+      <documentation>Rol de dominio. Estado: propuesta. Rol de dominio separado del worker. Un callback del worker entrega una propuesta; no es autorización ni puede elegir otra identidad.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>target-cloud.architecture.json#cloud_control</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="domain_store" xsi:type="DataObject">
+      <name xml:lang="es">Estado de dominio</name>
+      <documentation>Transacción condicional. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>target-cloud.architecture.json#domain_store</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="cloud_identity" xsi:type="ApplicationService">
+      <name xml:lang="es">Identidad federada</name>
+      <documentation>MFA según riesgo. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>target-cloud.architecture.json#cloud_identity</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="cloud_policy" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Política / kill switch</name>
+      <documentation>Versión y vigencia. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>target-cloud.architecture.json#cloud_policy</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="cloud_audit" xsi:type="DataObject">
+      <name xml:lang="es">Archivo de auditoría</name>
+      <documentation>Acceso y retención. Estado: propuesta. Archivo de evidencia separado del estado de dominio. Retención, acceso del auditor y protección contra modificación requieren implementación y prueba.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>target-cloud.architecture.json#cloud_audit</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="queue" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Cola + fallos</name>
+      <documentation>Reintentos acotados. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>target-cloud.architecture.json#queue</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="worker" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Worker · az-1 / az-2</name>
+      <documentation>Dos ubicaciones objetivo. Estado: propuesta. Representa el mismo componente lógico desplegable en az-1 y az-2; la vista no acredita dos instancias ni aislamiento. La elección de runtime es una decisión pendiente.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>target-cloud.architecture.json#worker</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="model_api" xsi:type="ApplicationService">
+      <name xml:lang="es">Modelo administrado</name>
+      <documentation>Salida sin autoridad. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>target-cloud.architecture.json#model_api</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="researcher" xsi:type="BusinessActor">
+      <name xml:lang="es">Evaluador</name>
+      <documentation>Pregunta e hipótesis. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>evaluation-lab.architecture.json#researcher</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="manifest" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Manifiesto</name>
+      <documentation>Dataset + política + seed. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>evaluation-lab.architecture.json#manifest</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="catalog" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Catálogo canónico</name>
+      <documentation>Reserva única atómica. Estado: propuesta. Servicio con almacén transaccional. Reserva atómica por run_key, lease con fencing y commit del resultado; único escritor autorizado para estado del experimento.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>evaluation-lab.architecture.json#catalog</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="scheduler" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Planificador</name>
+      <documentation>Lease + fencing. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>evaluation-lab.architecture.json#scheduler</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="review" xsi:type="BusinessRole">
+      <name xml:lang="es">Revisión humana</name>
+      <documentation>Criterios y límites. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>evaluation-lab.architecture.json#review</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="result" xsi:type="DataObject">
+      <name xml:lang="es">Resultados</name>
+      <documentation>Hashes + procedencia. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>evaluation-lab.architecture.json#result</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="executor" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Ejecutor aislado</name>
+      <documentation>Presupuesto y scopes. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>evaluation-lab.architecture.json#executor</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="cleanup" xsi:type="ApplicationComponent">
+      <name xml:lang="es">Limpieza</name>
+      <documentation>Estado independiente. Estado: propuesta. Cuenta con privilegios acotados a recursos efímeros del experimento. Conserva cleanup_status separado de execution_status y test_result; no elimina resultados publicados.</documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>evaluation-lab.architecture.json#cleanup</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="metrics" xsi:type="DataObject">
+      <name xml:lang="es">Métricas / tablero</name>
+      <documentation>Proyección del catálogo. Estado: propuesta. </documentation>
+      <properties>
+        <property propertyDefinitionRef="prop-status">
+          <value>proposed</value>
+        </property>
+        <property propertyDefinitionRef="prop-source">
+          <value>evaluation-lab.architecture.json#metrics</value>
+        </property>
+      </properties>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="operator-to-channel" source="operator" target="channel" xsi:type="Association" isDirected="true">
+      <name xml:lang="es">HTTPS</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="identity-to-channel" source="identity" target="channel" xsi:type="Serving">
+      <name xml:lang="es">OIDC + PKCE</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="channel-to-controller" source="channel" target="controller" xsi:type="Flow">
+      <name xml:lang="es">Solicitud + versión</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="reviewer-to-controller" source="reviewer" target="controller" xsi:type="Association" isDirected="true">
+      <name xml:lang="es">Aprueba hash + plazo</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="policy-to-controller" source="policy" target="controller" xsi:type="Flow">
+      <name xml:lang="es">Evalúa + fail closed</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="controller-to-record" source="controller" target="record" xsi:type="Access" accessType="ReadWrite">
+      <name xml:lang="es">Efecto idempotente</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="channel-to-agent" source="channel" target="agent" xsi:type="Flow">
+      <name xml:lang="es">Contexto permitido</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="agent-to-tools" source="agent" target="tools" xsi:type="Flow">
+      <name xml:lang="es">Allowlist + scopes</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="tools-to-controller" source="tools" target="controller" xsi:type="Flow">
+      <name xml:lang="es">Evidencia + propuesta</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="controller-to-audit" source="controller" target="audit" xsi:type="Access" accessType="Write">
+      <name xml:lang="es">Decisión y resultado</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="record-to-audit" source="record" target="audit" xsi:type="Association" isDirected="true">
+      <name xml:lang="es">Conciliación</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="user-to-gateway" source="user" target="gateway" xsi:type="Association" isDirected="true">
+      <name xml:lang="es">HTTPS</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="cloud_identity-to-gateway" source="cloud_identity" target="gateway" xsi:type="Serving">
+      <name xml:lang="es">JWT validado</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="gateway-to-cloud_control" source="gateway" target="cloud_control" xsi:type="Flow">
+      <name xml:lang="es">Identidad + tenant</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="cloud_policy-to-cloud_control" source="cloud_policy" target="cloud_control" xsi:type="Flow">
+      <name xml:lang="es">Check antes de efecto</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="cloud_control-to-domain_store" source="cloud_control" target="domain_store" xsi:type="Access" accessType="ReadWrite">
+      <name xml:lang="es">Clave + versión</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="domain_store-to-cloud_audit" source="domain_store" target="cloud_audit" xsi:type="Association" isDirected="true">
+      <name xml:lang="es">Eventos / outbox</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="cloud_control-to-queue" source="cloud_control" target="queue" xsi:type="Flow">
+      <name xml:lang="es">Trabajo asíncrono</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="queue-to-worker" source="queue" target="worker" xsi:type="Flow">
+      <name xml:lang="es">Entrega ≥ 1 vez</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="worker-to-model_api" source="worker" target="model_api" xsi:type="Flow">
+      <name xml:lang="es">TLS · datos mínimos</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="worker-to-cloud_control" source="worker" target="cloud_control" xsi:type="Flow">
+      <name xml:lang="es">Propuesta validable</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="researcher-to-manifest" source="researcher" target="manifest" xsi:type="Association" isDirected="true">
+      <name xml:lang="es">Caso versionado</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="manifest-to-catalog" source="manifest" target="catalog" xsi:type="Flow">
+      <name xml:lang="es">Reserva run_key</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="catalog-to-scheduler" source="catalog" target="scheduler" xsi:type="Flow">
+      <name xml:lang="es">Despacho durable</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="scheduler-to-executor" source="scheduler" target="executor" xsi:type="Flow">
+      <name xml:lang="es">Lease vigente</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="executor-to-cleanup" source="executor" target="cleanup" xsi:type="Flow">
+      <name xml:lang="es">Finalización</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="cleanup-to-catalog" source="cleanup" target="catalog" xsi:type="Flow">
+      <name xml:lang="es">Cleanup_status</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="executor-to-result" source="executor" target="result" xsi:type="Access" accessType="Write">
+      <name xml:lang="es">Artefactos + hash</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="catalog-to-result" source="catalog" target="result" xsi:type="Access" accessType="Write">
+      <name xml:lang="es">Commit del resultado</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="result-to-review" source="result" target="review" xsi:type="Association" isDirected="true">
+      <name xml:lang="es">Evidencia reproducible</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+    <relationship identifier="result-to-metrics" source="result" target="metrics" xsi:type="Association" isDirected="true">
+      <name xml:lang="es">Proyección</name>
+      <documentation>Relación propuesta. La etiqueta describe el contrato; la vista no demuestra enforcement ni despliegue.</documentation>
+    </relationship>
+  </relationships>
+  <propertyDefinitions>
+    <propertyDefinition identifier="prop-status" type="string">
+      <name xml:lang="es">evidence_status</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="prop-source" type="string">
+      <name xml:lang="es">source_view</name>
+    </propertyDefinition>
+  </propertyDefinitions>
+  <views>
+    <diagrams>
+      <view identifier="view-conceptual" xsi:type="Diagram">
+        <name xml:lang="es">AI bajo control · arquitectura conceptual</name>
+        <documentation>Ejercicio A · asistente de operaciones · objetivo propuesto. La notación ArchiMate corresponde al XML; la apariencia del HTML usa Archify.</documentation>
+        <node identifier="node-conceptual-operator" elementRef="operator" x="40" y="290" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="255" g="245" b="180" />
+          </style>
+        </node>
+        <node identifier="node-conceptual-channel" elementRef="channel" x="320" y="290" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-conceptual-controller" elementRef="controller" x="600" y="290" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-conceptual-record" elementRef="record" x="880" y="290" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="182" g="219" b="243" />
+          </style>
+        </node>
+        <node identifier="node-conceptual-identity" elementRef="identity" x="320" y="80" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-conceptual-reviewer" elementRef="reviewer" x="600" y="80" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="255" g="245" b="180" />
+          </style>
+        </node>
+        <node identifier="node-conceptual-policy" elementRef="policy" x="880" y="80" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-conceptual-agent" elementRef="agent" x="320" y="520" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-conceptual-tools" elementRef="tools" x="600" y="520" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-conceptual-audit" elementRef="audit" x="880" y="520" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="182" g="219" b="243" />
+          </style>
+        </node>
+        <connection identifier="line-conceptual-operator-to-channel" relationshipRef="operator-to-channel" source="node-conceptual-operator" target="node-conceptual-channel" xsi:type="Relationship" />
+        <connection identifier="line-conceptual-identity-to-channel" relationshipRef="identity-to-channel" source="node-conceptual-identity" target="node-conceptual-channel" xsi:type="Relationship" />
+        <connection identifier="line-conceptual-channel-to-controller" relationshipRef="channel-to-controller" source="node-conceptual-channel" target="node-conceptual-controller" xsi:type="Relationship" />
+        <connection identifier="line-conceptual-reviewer-to-controller" relationshipRef="reviewer-to-controller" source="node-conceptual-reviewer" target="node-conceptual-controller" xsi:type="Relationship" />
+        <connection identifier="line-conceptual-policy-to-controller" relationshipRef="policy-to-controller" source="node-conceptual-policy" target="node-conceptual-controller" xsi:type="Relationship" />
+        <connection identifier="line-conceptual-controller-to-record" relationshipRef="controller-to-record" source="node-conceptual-controller" target="node-conceptual-record" xsi:type="Relationship" />
+        <connection identifier="line-conceptual-channel-to-agent" relationshipRef="channel-to-agent" source="node-conceptual-channel" target="node-conceptual-agent" xsi:type="Relationship" />
+        <connection identifier="line-conceptual-agent-to-tools" relationshipRef="agent-to-tools" source="node-conceptual-agent" target="node-conceptual-tools" xsi:type="Relationship" />
+        <connection identifier="line-conceptual-tools-to-controller" relationshipRef="tools-to-controller" source="node-conceptual-tools" target="node-conceptual-controller" xsi:type="Relationship" />
+        <connection identifier="line-conceptual-controller-to-audit" relationshipRef="controller-to-audit" source="node-conceptual-controller" target="node-conceptual-audit" xsi:type="Relationship" />
+        <connection identifier="line-conceptual-record-to-audit" relationshipRef="record-to-audit" source="node-conceptual-record" target="node-conceptual-audit" xsi:type="Relationship" />
+      </view>
+      <view identifier="view-target-cloud" xsi:type="Diagram">
+        <name xml:lang="es">Objetivo cloud · límites de confianza</name>
+        <documentation>Ejercicio A · cuenta1 / region-1 · alternativa AWS propuesta. La notación ArchiMate corresponde al XML; la apariencia del HTML usa Archify.</documentation>
+        <node identifier="node-target-cloud-user" elementRef="user" x="40" y="300" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="255" g="245" b="180" />
+          </style>
+        </node>
+        <node identifier="node-target-cloud-gateway" elementRef="gateway" x="320" y="300" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-target-cloud-cloud_control" elementRef="cloud_control" x="600" y="300" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-target-cloud-domain_store" elementRef="domain_store" x="880" y="300" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="182" g="219" b="243" />
+          </style>
+        </node>
+        <node identifier="node-target-cloud-cloud_identity" elementRef="cloud_identity" x="320" y="70" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-target-cloud-cloud_policy" elementRef="cloud_policy" x="600" y="70" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-target-cloud-cloud_audit" elementRef="cloud_audit" x="880" y="70" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="182" g="219" b="243" />
+          </style>
+        </node>
+        <node identifier="node-target-cloud-queue" elementRef="queue" x="320" y="530" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-target-cloud-worker" elementRef="worker" x="600" y="530" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-target-cloud-model_api" elementRef="model_api" x="880" y="530" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <connection identifier="line-target-cloud-user-to-gateway" relationshipRef="user-to-gateway" source="node-target-cloud-user" target="node-target-cloud-gateway" xsi:type="Relationship" />
+        <connection identifier="line-target-cloud-cloud_identity-to-gateway" relationshipRef="cloud_identity-to-gateway" source="node-target-cloud-cloud_identity" target="node-target-cloud-gateway" xsi:type="Relationship" />
+        <connection identifier="line-target-cloud-gateway-to-cloud_control" relationshipRef="gateway-to-cloud_control" source="node-target-cloud-gateway" target="node-target-cloud-cloud_control" xsi:type="Relationship" />
+        <connection identifier="line-target-cloud-cloud_policy-to-cloud_control" relationshipRef="cloud_policy-to-cloud_control" source="node-target-cloud-cloud_policy" target="node-target-cloud-cloud_control" xsi:type="Relationship" />
+        <connection identifier="line-target-cloud-cloud_control-to-domain_store" relationshipRef="cloud_control-to-domain_store" source="node-target-cloud-cloud_control" target="node-target-cloud-domain_store" xsi:type="Relationship" />
+        <connection identifier="line-target-cloud-domain_store-to-cloud_audit" relationshipRef="domain_store-to-cloud_audit" source="node-target-cloud-domain_store" target="node-target-cloud-cloud_audit" xsi:type="Relationship" />
+        <connection identifier="line-target-cloud-cloud_control-to-queue" relationshipRef="cloud_control-to-queue" source="node-target-cloud-cloud_control" target="node-target-cloud-queue" xsi:type="Relationship" />
+        <connection identifier="line-target-cloud-queue-to-worker" relationshipRef="queue-to-worker" source="node-target-cloud-queue" target="node-target-cloud-worker" xsi:type="Relationship" />
+        <connection identifier="line-target-cloud-worker-to-model_api" relationshipRef="worker-to-model_api" source="node-target-cloud-worker" target="node-target-cloud-model_api" xsi:type="Relationship" />
+        <connection identifier="line-target-cloud-worker-to-cloud_control" relationshipRef="worker-to-cloud_control" source="node-target-cloud-worker" target="node-target-cloud-cloud_control" xsi:type="Relationship" />
+      </view>
+      <view identifier="view-evaluation-lab" xsi:type="Diagram">
+        <name xml:lang="es">AI Evaluation Lab · ciclo controlado</name>
+        <documentation>Ejercicio B · diseño conceptual separado de operaciones. La notación ArchiMate corresponde al XML; la apariencia del HTML usa Archify.</documentation>
+        <node identifier="node-evaluation-lab-researcher" elementRef="researcher" x="40" y="290" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="255" g="245" b="180" />
+          </style>
+        </node>
+        <node identifier="node-evaluation-lab-manifest" elementRef="manifest" x="320" y="290" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-evaluation-lab-catalog" elementRef="catalog" x="600" y="290" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-evaluation-lab-scheduler" elementRef="scheduler" x="880" y="290" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-evaluation-lab-review" elementRef="review" x="320" y="70" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="255" g="245" b="180" />
+          </style>
+        </node>
+        <node identifier="node-evaluation-lab-result" elementRef="result" x="600" y="70" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="182" g="219" b="243" />
+          </style>
+        </node>
+        <node identifier="node-evaluation-lab-executor" elementRef="executor" x="880" y="520" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-evaluation-lab-cleanup" elementRef="cleanup" x="600" y="520" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="187" g="234" b="241" />
+          </style>
+        </node>
+        <node identifier="node-evaluation-lab-metrics" elementRef="metrics" x="880" y="70" w="196" h="72" xsi:type="Element">
+          <style>
+            <fillColor r="182" g="219" b="243" />
+          </style>
+        </node>
+        <connection identifier="line-evaluation-lab-researcher-to-manifest" relationshipRef="researcher-to-manifest" source="node-evaluation-lab-researcher" target="node-evaluation-lab-manifest" xsi:type="Relationship" />
+        <connection identifier="line-evaluation-lab-manifest-to-catalog" relationshipRef="manifest-to-catalog" source="node-evaluation-lab-manifest" target="node-evaluation-lab-catalog" xsi:type="Relationship" />
+        <connection identifier="line-evaluation-lab-catalog-to-scheduler" relationshipRef="catalog-to-scheduler" source="node-evaluation-lab-catalog" target="node-evaluation-lab-scheduler" xsi:type="Relationship" />
+        <connection identifier="line-evaluation-lab-scheduler-to-executor" relationshipRef="scheduler-to-executor" source="node-evaluation-lab-scheduler" target="node-evaluation-lab-executor" xsi:type="Relationship" />
+        <connection identifier="line-evaluation-lab-executor-to-cleanup" relationshipRef="executor-to-cleanup" source="node-evaluation-lab-executor" target="node-evaluation-lab-cleanup" xsi:type="Relationship" />
+        <connection identifier="line-evaluation-lab-cleanup-to-catalog" relationshipRef="cleanup-to-catalog" source="node-evaluation-lab-cleanup" target="node-evaluation-lab-catalog" xsi:type="Relationship" />
+        <connection identifier="line-evaluation-lab-executor-to-result" relationshipRef="executor-to-result" source="node-evaluation-lab-executor" target="node-evaluation-lab-result" xsi:type="Relationship">
+          <bendpoint x="1140" y="556" />
+          <bendpoint x="1140" y="18" />
+          <bendpoint x="698" y="18" />
+        </connection>
+        <connection identifier="line-evaluation-lab-catalog-to-result" relationshipRef="catalog-to-result" source="node-evaluation-lab-catalog" target="node-evaluation-lab-result" xsi:type="Relationship" />
+        <connection identifier="line-evaluation-lab-result-to-review" relationshipRef="result-to-review" source="node-evaluation-lab-result" target="node-evaluation-lab-review" xsi:type="Relationship" />
+        <connection identifier="line-evaluation-lab-result-to-metrics" relationshipRef="result-to-metrics" source="node-evaluation-lab-result" target="node-evaluation-lab-metrics" xsi:type="Relationship" />
+      </view>
+    </diagrams>
+  </views>
+</model>

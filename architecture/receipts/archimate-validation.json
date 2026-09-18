@@ -1,0 +1,33 @@
+{
+  "model": "architecture/financial-ai.archimate.xml",
+  "sha256": "bab7ddd24c539395b37a0aa218f7b8fcce78bf69cd99247d98fa5017cf89c361",
+  "xsd_validation": "passed",
+  "reference_integrity": "passed",
+  "element_count": 29,
+  "relationship_count": 31,
+  "diagram_count": 3,
+  "semantic_review": "manual mapping; no automated ArchiMate metamodel compliance claim",
+  "archi_import": "not_executed",
+  "schemas": [
+    {
+      "file": "archimate3_Diagram.xsd",
+      "source": "https://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd",
+      "sha256": "6419080f4c4bc43b4a7b8acf870146a7bae6c3487a3ce08d3c521c028ea6056e"
+    },
+    {
+      "file": "archimate3_View.xsd",
+      "source": "https://www.opengroup.org/xsd/archimate/3.1/archimate3_View.xsd",
+      "sha256": "d708ce176403034b1229b892712cfd69660aefe17da4cc54acea1ac35e4a9854"
+    },
+    {
+      "file": "archimate3_Model.xsd",
+      "source": "https://www.opengroup.org/xsd/archimate/3.1/archimate3_Model.xsd",
+      "sha256": "dd451abe3e3193f91dd9544b279af9bbbf17e75ff1ef86f65ad52b3f8cd29794"
+    },
+    {
+      "file": "xml.xsd",
+      "source": "https://www.w3.org/2001/xml.xsd",
+      "sha256": "61960fb3131e38022caad5360e2f33a3382578ab3c80cd58bd74320ede61b20c"
+    }
+  ]
+}

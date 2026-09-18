@@ -1,0 +1,556 @@
+{
+  "classification": "PUBLIC",
+  "date": "2026-09-18",
+  "scope": "Synthetic reference designs; no inventory of deployed infrastructure.",
+  "claims": [
+    {
+      "subject_id": "operator",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Operador",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "channel",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Canal de atenci\u00f3n",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "controller",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Control de dominio",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "record",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Sistema de registro",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "identity",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Identidad",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "reviewer",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Revisor humano",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "policy",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Pol\u00edtica y parada",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "agent",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Agente y modelo",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "tools",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Herramientas",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "audit",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Auditor\u00eda",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "operator-to-channel",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "HTTPS",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "identity-to-channel",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "OIDC + PKCE",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "channel-to-controller",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Solicitud + versi\u00f3n",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "reviewer-to-controller",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Aprueba hash + plazo",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "policy-to-controller",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Eval\u00faa + fail closed",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "controller-to-record",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Efecto idempotente",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "channel-to-agent",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Contexto permitido",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "agent-to-tools",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Allowlist + scopes",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "tools-to-controller",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Evidencia + propuesta",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "controller-to-audit",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Decisi\u00f3n y resultado",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "record-to-audit",
+      "view": "conceptual.architecture.json",
+      "status": "proposed",
+      "source": "conceptual.architecture.json",
+      "source_sha256": "a7e15010e597efd522f43e931ac344a20c321a56848cf417f6d830ef8c874eb6",
+      "claim": "Conciliaci\u00f3n",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "researcher",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Evaluador",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "manifest",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Manifiesto",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "catalog",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Cat\u00e1logo can\u00f3nico",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "scheduler",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Planificador",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "review",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Revisi\u00f3n humana",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "result",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Resultados",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "executor",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Ejecutor aislado",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "cleanup",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Limpieza",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "metrics",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "M\u00e9tricas / tablero",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "researcher-to-manifest",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Caso versionado",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "manifest-to-catalog",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Reserva run_key",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "catalog-to-scheduler",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Despacho durable",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "scheduler-to-executor",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Lease vigente",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "executor-to-cleanup",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Finalizaci\u00f3n",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "cleanup-to-catalog",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Cleanup_status",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "executor-to-result",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Artefactos + hash",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "catalog-to-result",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Commit del resultado",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "result-to-review",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Evidencia reproducible",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "result-to-metrics",
+      "view": "evaluation-lab.architecture.json",
+      "status": "proposed",
+      "source": "evaluation-lab.architecture.json",
+      "source_sha256": "2a80e8399041dc477f0bac75003646b82373df970333d37706e5377b0b556dd2",
+      "claim": "Proyecci\u00f3n",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "user",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Usuario autorizado",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "gateway",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Ingreso administrado",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "cloud_control",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Controlador",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "domain_store",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Estado de dominio",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "cloud_identity",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Identidad federada",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "cloud_policy",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Pol\u00edtica / kill switch",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "cloud_audit",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Archivo de auditor\u00eda",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "queue",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Cola + fallos",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "worker",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Worker \u00b7 az-1 / az-2",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "model_api",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Modelo administrado",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "user-to-gateway",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "HTTPS",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "cloud_identity-to-gateway",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "JWT validado",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "gateway-to-cloud_control",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Identidad + tenant",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "cloud_policy-to-cloud_control",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Check antes de efecto",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "cloud_control-to-domain_store",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Clave + versi\u00f3n",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "domain_store-to-cloud_audit",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Eventos / outbox",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "cloud_control-to-queue",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Trabajo as\u00edncrono",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "queue-to-worker",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Entrega \u2265 1 vez",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "worker-to-model_api",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "TLS \u00b7 datos m\u00ednimos",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    },
+    {
+      "subject_id": "worker-to-cloud_control",
+      "view": "target-cloud.architecture.json",
+      "status": "proposed",
+      "source": "target-cloud.architecture.json",
+      "source_sha256": "5771b57608a6511e5dab1eb99f23e6ca5d56e3204b26dbe196a8b9c57ecf97e5",
+      "claim": "Propuesta validable",
+      "verification": "Design only; implementation and effective enforcement require separate evidence."
+    }
+  ],
+  "observed_artifacts": [
+    "receipts/conceptual.json",
+    "receipts/target.json",
+    "receipts/evaluation-lab.json",
+    "receipts/archimate-validation.json"
+  ],
+  "browser_behavior": "All three views loaded and rendered in desktop browser; conceptual guided chapter selection verified; other controls not exhaustively tested",
+  "visual_review": "All three views reviewed on desktop; evaluation-lab outer route corrected and rechecked; mobile not tested",
+  "archi_import": "not_executed"
+}
