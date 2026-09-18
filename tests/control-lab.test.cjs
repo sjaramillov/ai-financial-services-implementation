@@ -116,6 +116,24 @@ test('export is a detached snapshot and declares simulation limits', () => {
   assert.equal(snapshot.modelInference, false); assert.equal(snapshot.durableAudit, false);
   assert.equal(snapshot.syntheticData, true); assert.equal(snapshot.mode, 'local-simulation');
 });
+test('export preserves the domain receipt for a lost acknowledgement without certifying consumer success', () => {
+  const lab = ready(); lab.approve('SIM-002'); lab.tick();
+  const snapshot = lab.snapshot();
+  const c = snapshot.cases.find(c => c.id === 'SIM-002');
+  assert.equal(c.status, 'UNKNOWN');
+  assert.equal(snapshot.receipts.length, snapshot.metrics.receipts);
+  const receipt = snapshot.receipts.find(receipt => receipt.operationId === c.operationId);
+  assert.equal(receipt.status, 'COMMITTED'); assert.equal(receipt.resource, c.resource);
+  assert.equal(receipt.version, c.version); assert.equal(receipt.binding, JSON.stringify(c.proposal));
+  // The downloaded teaching evidence must not become a mutable handle into the domain.
+  receipt.status = 'PENDING'; snapshot.receipts.length = 0;
+  assert.equal(lab.receipts.get(c.operationId).status, 'COMMITTED');
+  assert.equal(lab.reconcile('SIM-002').ok, true);
+  assert.equal(c.status, 'UNKNOWN'); // Earlier snapshots also remain unchanged after reconciliation.
+  const reconciled = lab.snapshot();
+  assert.equal(reconciled.receipts.length, 1); assert.equal(reconciled.metrics.effects, 1);
+  lab.reset(); assert.equal(lab.snapshot().receipts.length, 0);
+});
 test('revoking reviewer role after approval is checked again before the effect', () => {
   const lab = ready(); lab.approve('SIM-001'); lab.setReviewerEnabled(false);
   assert.equal(lab.approve('SIM-003').code, 'ROLE_DENIED');

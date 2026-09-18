@@ -42,7 +42,8 @@
         syntheticData: true, modelInference: false, durableAudit: false,
         time: this.time, paused: this.paused, stopped: this.stopped, dependencyUp: this.dependencyUp,
         concurrency: this.concurrency, reviewerEnabled: this.reviewerEnabled, circuit: this.circuit, workers: this.workers,
-        cases: this.cases, events: this.events, metrics: {
+        cases: this.cases, events: this.events,
+        receipts: Array.from(this.receipts, ([operationId, receipt]) => ({ operationId, ...receipt })), metrics: {
           cases: this.cases.length, effects: this.cases.reduce((n, c) => n + c.effects, 0),
           newDebits: 0, unknown: this.cases.filter(c => c.status === 'UNKNOWN').length,
           receipts: this.receipts.size } });

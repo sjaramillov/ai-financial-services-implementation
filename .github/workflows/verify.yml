@@ -21,6 +21,8 @@ jobs:
       - run: python3 scripts/check_publication.py
       - run: python3 scripts/check_links.py
       - run: python3 scripts/check_architecture.py
+      - run: python3 scripts/build_board_preview.py
+      - run: git diff --exit-code -- board/preview.svg
       - run: python3 architecture/scripts/export_archimate.py
       - run: git diff --exit-code -- architecture/financial-ai.archimate.xml
   terraform:

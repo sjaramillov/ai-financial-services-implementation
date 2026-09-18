@@ -1,0 +1,8 @@
+/* Local font assets. Copyright and SIL Open Font License notices: FONT-LICENSES.txt. */
+@font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 500 800; font-stretch: 75% 100%; font-display: swap; src: url("./bricolage-grotesque-variable.woff2") format("woff2"); }
+
+@font-face { font-family: "Atkinson Hyperlegible"; font-style: normal; font-weight: 400; font-stretch: 100%; font-display: swap; src: url("./atkinson-hyperlegible-regular.woff2") format("woff2"); }
+
+@font-face { font-family: "Atkinson Hyperlegible"; font-style: normal; font-weight: 700; font-stretch: 100%; font-display: swap; src: url("./atkinson-hyperlegible-bold.woff2") format("woff2"); }
+
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 600 800; font-stretch: 100%; font-display: swap; src: url("./archivo-variable.woff2") format("woff2"); }
