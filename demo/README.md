@@ -10,7 +10,7 @@ Todo ocurre en memoria con ocho casos ficticios. No hay modelos, APIs, credencia
 2. Pulsa **Avanzar 10 s**. El reloj es lógico y las primeras propuestas quedan en revisión.
 3. Selecciona un caso de la cola. Inspecciona **Contenido de propuesta y aprobación** y los eventos.
 4. Usa **Aprobar como revisor** y después **Avanzar 1 s** para permitir al dominio revalidar.
-5. Descarga **Evidencia JSON** antes de reiniciar si quieres conservar el recorrido. La descarga contiene todos los eventos; la pantalla muestra los últimos treinta.
+5. Descarga **Evidencia JSON** antes de reiniciar si quieres conservar el recorrido. La descarga contiene todos los eventos y los recibos sintéticos por operación; la pantalla muestra los últimos treinta eventos.
 
 El botón **Intentar ejecución**, dentro de los límites de autoridad, permite enviar el intento en el instante lógico actual. Es útil para comprobar denegaciones y duplicados. No hace avanzar el reloj. En el caso de vencimiento, sigue el paso **Avanzar 1 s** después de aprobar para alcanzar el límite exacto de expiración.
 
@@ -66,7 +66,7 @@ QUEUED → READING → REVIEW → APPROVED → VERIFIED
 
 ## Evidencia y verificación
 
-El esquema `financial-ai-control-lab-v1` declara `mode: local-simulation`, `syntheticData: true`, `modelInference: false` y `durableAudit: false`. Cada evento incluye secuencia, tiempo lógico, caso, operación, actor simulado, tipo y detalle. El recibo vive en memoria bajo una clave estable y su contenido se compara en reintentos.
+El esquema `financial-ai-control-lab-v1` declara `mode: local-simulation`, `syntheticData: true`, `modelInference: false` y `durableAudit: false`. Cada evento incluye secuencia, tiempo lógico, caso, operación, actor simulado, tipo y detalle. El recibo vive en memoria bajo una clave estable y su contenido se compara en reintentos. La colección `receipts` exporta una copia de cada recibo con `operationId`, contenido vinculado, recurso, versión y estado. En `UNKNOWN`, un recibo `COMMITTED` expone la perspectiva del dominio para estudiar la respuesta perdida; el consumidor conserva su estado desconocido hasta reconciliar. La descarga es una instantánea y no cambia al seguir ejecutando o reiniciar el ensayo.
 
 Desde la raíz:
 

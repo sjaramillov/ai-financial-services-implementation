@@ -1,8 +1,12 @@
 # AI Financial Services Implementation
 
-[![Verificación](https://github.com/sjaramillov/ai-finantial-services-implementation/actions/workflows/verify.yml/badge.svg)](https://github.com/sjaramillov/ai-finantial-services-implementation/actions/workflows/verify.yml)
+[![Verificación](https://github.com/sjaramillov/ai-financial-services-implementation/actions/workflows/verify.yml/badge.svg)](https://github.com/sjaramillov/ai-financial-services-implementation/actions/workflows/verify.yml)
 
 Controles para diseñar, evaluar y operar soluciones de IA en servicios financieros. Un repositorio educativo con tablero, simulación local, arquitectura conceptual, arquitectura objetivo y una base de infraestructura como código.
+
+[![Tablero de controles: la frontera de autoridad entre el modelo y los sistemas financieros](board/preview.svg)](board/README.md)
+
+*Vista del tablero. [Consultar el recorrido y sus controles](board/README.md).*
 
 **Principio central:** el modelo propone; el dominio autoriza y registra el efecto. La aprobación humana complementa los controles de identidad, política y estado de la operación.
 
@@ -17,8 +21,8 @@ Controles para diseñar, evaluar y operar soluciones de IA en servicios financie
 GitHub muestra el código de los HTML. Para interactuar, clonar y abrirlos localmente o servir el directorio:
 
 ```sh
-git clone https://github.com/sjaramillov/ai-finantial-services-implementation.git
-cd ai-finantial-services-implementation
+git clone https://github.com/sjaramillov/ai-financial-services-implementation.git
+cd ai-financial-services-implementation
 python3 -m http.server 8080 --bind 127.0.0.1
 ```
 

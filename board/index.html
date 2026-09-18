@@ -1,9 +1,207 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Tablero interactivo de controles para implementar IA en servicios financieros."><title>Controles de IA · Tablero de arquitectura</title><link rel="icon" href="data:,"><link rel="stylesheet" href="style.css"><script defer src="app.js"></script></head>
-<body><a class="skip" href="#main">Saltar al tablero</a><header class="topbar"><a class="brand" href="../index.html">AI · Financial services</a><nav aria-label="Navegación principal"><a aria-current="page" href="index.html">Tablero</a><a href="../demo/index.html">Laboratorio</a><a href="../architecture/conceptual.html">Conceptual</a><a href="../architecture/target.html">Objetivo</a></nav></header>
-<main id="main"><p class="eyebrow">Referencia pública · Controles antes del efecto</p><h1>El modelo propone.<br>El dominio autoriza.</h1><p class="intro">Una implementación de IA financiera debe conservar la autoridad en servicios verificables. Recorre la propuesta, la aprobación acotada y la comprobación del resultado con un caso de conciliación sintético.</p><div class="scope"><span><strong>Diseño:</strong> arquitectura de referencia</span><span><strong>Ejercicio:</strong> simulación local</span><span><strong>Datos:</strong> completamente ficticios</span></div>
-<div class="toolbar" aria-label="Controles del recorrido"><button id="previous">Anterior</button><span id="counter">Paso 1 de 7</span><button id="next" class="primary">Siguiente</button><button id="show-all" aria-pressed="false">Mostrar todo</button><button id="present" aria-pressed="false">Presentar</button><small>Selecciona un componente para inspeccionar su control.</small></div>
-<section class="walkthrough" aria-label="Frontera de autoridad"><div class="diagram"><div class="lane-label">01 · Construye contexto y propone</div><div class="lane"><button class="node" data-step="0"><strong>Identidad y contexto</strong><span>Actor + propósito. Recuperación limitada por permisos y pertenencia al caso.</span></button><button class="node" data-step="1"><strong>Modelo + evidencia</strong><span>Información no confiable. Puede abstenerse; nunca recibe autoridad de escritura.</span></button><button class="node" data-step="2"><strong>Propuesta tipada</strong><span>Acción, recurso, argumentos, evidencia, versión y clave de operación.</span></button></div><div class="boundary">↓ FRONTERA DE AUTORIDAD: CRUZA UNA PROPUESTA, NO UNA ORDEN</div><div class="lane-label">02 · Valida, autoriza y ejecuta</div><div class="lane"><button class="node" data-step="3"><strong>Policy + revisión humana</strong><span>Acción permitida. Solicitante ≠ aprobador. Contenido exacto y vigencia.</span></button><button class="node" data-step="4"><strong>API de dominio</strong><span>Revalida estado, alcance y parada. Deduplicación en el límite del efecto.</span></button><button class="node" data-step="5"><strong>Resultado verificable</strong><span>Consulta recibo + estado. Resultado desconocido exige reconciliación.</span></button></div><button class="node audit-rail" data-step="6"><strong>03 · Evidencia transversal</strong><span>Actor · decisión · versión · aprobación · operación · postcondición · correlación · retención definida</span></button></div>
-<aside class="coach" aria-live="polite"><p class="step-index" id="step-index">01 / 07</p><h2 id="step-title">Identidad antes del contexto</h2><p id="step-copy">El backend autentica al actor y limita las fuentes por recurso y propósito. Poder leer un documento no concede permiso para cambiar una operación.</p><div class="progress" aria-hidden="true"><span id="progress" style="width:14.285%"></span></div><p class="eyebrow">Pregunta de revisión</p><p id="step-question" class="question">¿Podemos demostrar qué evidencia podía consultar este actor para este caso?</p><a id="step-demo" href="../demo/index.html">Probar los controles en el laboratorio →</a></aside></section>
-<section class="section"><p class="eyebrow">Caso de referencia</p><h2>Pago aplicado, confirmación pendiente</h2><p class="intro">El único efecto elegible es conciliar la confirmación. El débito ya existe. Un procedimiento recuperado, una explicación convincente o una aprobación humana no autorizan un segundo débito.</p><div class="table-wrap"><table class="control-table"><thead><tr><th scope="col">Situación</th><th scope="col">Control esperado</th><th scope="col">Evidencia de decisión</th></tr></thead><tbody><tr><td>Propuesta fuera de catálogo</td><td>Rechazar aunque una persona intente aprobar.</td><td>Acción solicitada y regla que la deniega.</td></tr><tr><td>Estado o evidencia desactualizados</td><td>Releer y generar una propuesta nueva.</td><td>Versión observada, vigente y vencimiento.</td></tr><tr><td>Dependencia degradada</td><td>Limitar lecturas y suspender efectos sin precondiciones verificables.</td><td>Reintentos acotados, circuito y recuperación.</td></tr><tr><td>Respuesta perdida</td><td>Consultar operación y postcondición antes de cualquier recuperación.</td><td>Misma clave; resultado desconocido permanece explícito.</td></tr><tr><td>Parada de emergencia</td><td>Bloquear efectos nuevos y reconciliar los iniciados.</td><td>Hora del bloqueo y operaciones afectadas.</td></tr></tbody></table></div></section>
-<section class="section"><h2>Profundizar sin perder la frontera</h2><details><summary>La aprobación humana tiene un alcance exacto</summary><p>La identidad del aprobador se verifica en servidor. La autorización se liga a la acción, recurso, argumentos, evidencia y vencimiento. Un cambio invalida esa revisión. Los controles del dominio vuelven a comprobarse inmediatamente antes del efecto.</p></details><details><summary>Idempotencia no equivale a un único efecto remoto garantizado</summary><p>Una clave estable ayuda a reconocer duplicados. Una implementación real necesita almacenamiento durable, operaciones atómicas y un contrato de deduplicación con el destino. La pérdida de una respuesta puede dejar un resultado desconocido que exige consulta y reconciliación.</p></details><details><summary>La evaluación del modelo también forma parte del control</summary><p>Separar la corrección del diagnóstico, el sustento de evidencia, la abstención, la selección de herramientas y las decisiones de autorización. Evaluar casos reservados, instrucciones hostiles, permisos de recuperación y cambios de modelo antes de promover una versión. La simulación local no mide calidad de inferencia.</p></details><details><summary>Lo que demuestra este repositorio</summary><p>Un diseño explicable y un ejercicio determinista de estados. No acredita despliegue, cumplimiento normativo, certificación, seguridad productiva, alta disponibilidad ni rendimiento real. La persistencia, autenticación e inferencia se deben implementar y validar en un entorno separado.</p></details><div class="next-links"><a class="button primary" href="../demo/index.html">Abrir ejercicio interactivo</a><a class="button" href="../architecture/conceptual.html">Arquitectura conceptual</a><a class="button" href="../architecture/target.html">Arquitectura objetivo</a></div></section></main><footer>Material educativo público · Sin conexiones a sistemas financieros · Sin datos de clientes</footer></body></html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Tablero interactivo de controles para IA financiera: propuesta, autoridad y evidencia.">
+  <meta name="theme-color" content="#f5f1e8">
+  <title>Frontera de autoridad · AI Financial Services</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="board.css">
+  <link rel="stylesheet" href="diagram.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al tablero</a>
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="AI Financial Services, inicio"><span class="brand-symbol" aria-hidden="true">ai<span>·</span></span><span>Financial services<small>Arquitectura y controles</small></span></a>
+    <nav aria-label="Navegación principal">
+      <a href="index.html" aria-current="page">Tablero</a>
+      <a href="../architecture/conceptual.html">Conceptual</a>
+      <a href="../architecture/target.html">Objetivo</a>
+      <a class="nav-lab" href="../demo/index.html">Abrir laboratorio <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="intro" aria-labelledby="title">
+      <div><p class="eyebrow">Cuaderno de arquitectura / 01</p><h1 id="title">La frontera de <span>autoridad.</span></h1></div>
+      <div class="intro-note"><p>El modelo propone. El dominio autoriza.<br>La evidencia permite comprobar el resultado.</p><span class="scope-label"><span aria-hidden="true">○</span> Diseño de referencia · datos sintéticos</span></div>
+    </section>
+    <section class="workspace" aria-label="Tablero de controles de IA">
+      <div class="board-column">
+        <div class="board-toolbar" role="group" aria-label="Controles del recorrido">
+          <div class="walk-controls"><button id="previous" aria-label="Paso anterior" title="Paso anterior">←</button><span id="counter" class="counter">01 / 07</span><button id="next" aria-label="Paso siguiente" title="Paso siguiente">→</button><button id="restart" class="text-button">Reiniciar</button></div>
+          <div class="view-controls"><button id="show-all" aria-pressed="true">Vista completa</button><button id="present" aria-pressed="false">Presentar</button><button id="print" class="text-button">Imprimir</button></div>
+        </div>
+        <nav class="step-nav" aria-label="Siete pasos de control">
+          <ol>
+            <li><button data-go-step="1" aria-current="step"><span>01</span> La frontera</button></li>
+            <li><button data-go-step="2"><span>02</span> La propuesta</button></li>
+            <li><button data-go-step="3"><span>03</span> Ruta gobernada</button></li>
+            <li><button data-go-step="4"><span>04</span> Identidad y política</button></li>
+            <li><button data-go-step="5"><span>05</span> Decisión humana</button></li>
+            <li><button data-go-step="6"><span>06</span> Verificar efecto</button></li>
+            <li><button data-go-step="7"><span>07</span> Auditoría</button></li>
+          </ol>
+        </nav>
+        <figure class="board">
+          <div class="thesis"><span class="thesis-mark" aria-hidden="true">!</span><p><strong>La autoridad permanece fuera del modelo.</strong> Cruza una propuesta tipada, todavía no confiable.</p><span class="figure-label">MAPA DE CONTROL</span></div>
+          <div class="diagram-scroll" tabindex="0" aria-label="Mapa de arquitectura desplazable; descripción textual al final del tablero">
+<svg class="diagram" viewBox="0 0 1440 720" role="img" aria-labelledby="diagram-title diagram-desc">
+  <title id="diagram-title">Arquitectura de IA con frontera de autoridad</title>
+  <desc id="diagram-desc">Un canal autenticado entrega contexto a un modelo con recuperación controlada. El modelo produce una propuesta tipada que cruza la ruta gobernada del agente. Debajo, identidad, política, aprobación humana según riesgo, una API de dominio y el sistema de registro autorizan y ejecutan. Una lectura independiente verifica la postcondición y una auditoría transversal registra toda la cadena.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="oklch(43% 0.035 252)" />
+    </marker>
+    <marker id="arrow-control" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="oklch(45% 0.095 237)" />
+    </marker>
+  </defs>
+  <g class="reveal is-visible" data-step="1" aria-hidden="false">
+    <text class="lane-label" x="56" y="48">PROPONE</text>
+    <line class="boundary" x1="42" y1="310" x2="1398" y2="310" />
+    <rect class="boundary-label-bg" x="405" y="286" width="630" height="48" rx="24" />
+    <text class="boundary-label" x="720" y="316" text-anchor="middle">FRONTERA DE AUTORIDAD SOBRE SISTEMAS CRÍTICOS</text>
+    <text class="lane-label" x="56" y="358">AUTORIZA Y EJECUTA</text>
+  </g>
+  <g class="reveal" data-step="2" aria-hidden="true">
+    <rect class="node" x="55" y="88" width="245" height="118" rx="12" />
+    <text class="node-title" x="78" y="121">Canal autenticado</text>
+    <text class="node-copy" x="78" y="151">
+      <tspan x="78" dy="0">Actor identificado</tspan>
+      <tspan x="78" dy="22">sesión y propósito</tspan>
+    </text>
+    <path class="flow" d="M 300 147 H 372" />
+    <rect class="node node-control" x="382" y="76" width="340" height="142" rx="12" />
+    <text class="node-title" x="405" y="110">Modelo + contexto</text>
+    <text class="node-copy" x="405" y="140">
+      <tspan x="405" dy="0">Permisos antes de recuperar</tspan>
+      <tspan x="405" dy="22">protección de contenido y datos</tspan>
+    </text>
+    <text class="node-micro" x="405" y="198">RAG OPCIONAL · LEER NO AUTORIZA ACTUAR</text>
+    <path class="flow" d="M 722 147 H 794" />
+    <rect class="node node-action" x="804" y="68" width="555" height="158" rx="12" />
+    <text class="node-title" x="829" y="102">Propuesta tipada, todavía no confiable</text>
+    <text class="node-copy" x="829" y="132">
+      <tspan x="829" dy="0">JSON Schema valida forma; reglas externas comprueban</tspan>
+      <tspan x="829" dy="22">allowlist, rangos y precondiciones de dominio explícitas.</tspan>
+    </text>
+    <text class="node-micro" x="829" y="187">ACCIÓN · RECURSO · ARGUMENTOS · VERSIÓN ESPERADA · EVIDENCIA</text>
+    <text class="node-micro" x="829" y="210">CONTROL: RIESGO · CLAVE ESTABLE · HASH · SIN SECRETOS</text>
+  </g>
+  <g class="reveal" data-step="3" aria-hidden="true">
+    <path class="flow" d="M 1082 226 V 278" />
+    <circle class="gateway" cx="1082" cy="310" r="24" />
+    <path d="M 1071 310 L 1079 318 L 1095 300" fill="none" stroke="oklch(29% 0.055 76)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+    <text class="gateway-label" x="1118" y="251">RUTA GOBERNADA DEL AGENTE</text>
+    <text class="gateway-copy" x="1118" y="273">Permisos por destino · alcance mínimo</text>
+    <text class="gateway-copy" x="1118" y="292">fuera del LLM · sin bypass del agente</text>
+  </g>
+  <g class="reveal" data-step="4" aria-hidden="true">
+    <path class="flow" d="M 1082 334 V 368 H 154 V 389" />
+    <rect class="node node-control" x="45" y="396" width="218" height="112" rx="12" />
+    <text class="node-title" x="68" y="429">Actor + servicio</text>
+    <text class="node-copy" x="68" y="458">
+      <tspan x="68" dy="0">identidades separadas</tspan>
+      <tspan x="68" dy="21">contexto validado</tspan>
+    </text>
+    <path class="flow" d="M 263 452 H 294" />
+    <rect class="node node-control" x="304" y="396" width="226" height="112" rx="12" />
+    <text class="node-title" x="327" y="429">Política</text>
+    <text class="node-copy" x="327" y="458">
+      <tspan x="327" dy="0">actor + tarea + recurso</tspan>
+      <tspan x="327" dy="21">tool + args · default deny</tspan>
+    </text>
+    <rect class="node node-control" x="746" y="384" width="278" height="136" rx="12" />
+    <text class="node-title" x="770" y="417">API de dominio</text>
+    <text class="node-copy" x="770" y="446">
+      <tspan x="770" dy="0">schema, authz y límites</tspan>
+      <tspan x="770" dy="21">precondiciones y estado esperado</tspan>
+      <tspan x="770" dy="21">deduplicación + reconciliación</tspan>
+    </text>
+    <path class="flow" d="M 1024 452 H 1054" />
+    <rect class="node node-target" x="1064" y="384" width="331" height="136" rx="12" />
+    <text class="node-title" x="1088" y="417">Sistema de registro</text>
+    <text class="node-copy" x="1088" y="446">
+      <tspan x="1088" dy="0">estado de negocio</tspan>
+      <tspan x="1088" dy="21">autoridad real del estado</tspan>
+    </text>
+    <text class="node-micro" x="1088" y="493">ESTADO DEFINIDO POR EL DOMINIO</text>
+  </g>
+  <g class="reveal" data-step="5" aria-hidden="true">
+    <path class="flow" d="M 530 452 H 557" />
+    <rect class="node node-action" x="567" y="384" width="139" height="136" rx="12" />
+    <text class="node-title" x="636.5" y="417" text-anchor="middle">Gate</text>
+    <text class="node-title" x="636.5" y="440" text-anchor="middle">humano</text>
+    <text class="node-copy" x="636.5" y="468" text-anchor="middle">
+      <tspan x="636.5" dy="0">según operación</tspan>
+      <tspan x="636.5" dy="20">maker-checker</tspan>
+    </text>
+    <text class="node-micro" x="636.5" y="507" text-anchor="middle">TTL · HASH · 1 USO</text>
+    <path class="flow" d="M 706 452 H 736" />
+  </g>
+  <g class="reveal" data-step="6" aria-hidden="true">
+    <path class="flow-dashed" d="M 1228 520 V 548" />
+    <rect class="node node-control" x="1058" y="558" width="337" height="82" rx="12" />
+    <text class="node-title" x="1082" y="588">Postcondición independiente</text>
+    <text class="node-copy" x="1082" y="614">lectura + invariante determinista</text>
+    <text class="node-micro" x="1082" y="632">ÉXITO · FALLO · INCONCLUSO</text>
+    <path class="flow-dashed" d="M 1058 600 H 885 V 530" />
+  </g>
+  <g class="reveal" data-step="7" aria-hidden="true">
+    <rect class="audit-rail" x="45" y="657" width="1350" height="48" rx="10" />
+    <text class="audit-title" x="68" y="678">Auditoría transversal</text>
+    <text class="audit-copy" x="68" y="696">actor · workload · propuesta/hash · versiones · decisión de policy · aprobador/TTL · args protegidos · ejecución · postcondición · tiempo · correlación</text>
+  </g>
+  <g id="overlay-readonly" class="extension-layer" aria-hidden="true" hidden="hidden">
+    <rect class="extension-box" x="766" y="342" width="432" height="34" rx="8" />
+    <text class="extension-title" x="783" y="364">SÓLO LECTURA</text>
+    <text class="extension-copy" x="885" y="364">sin acción mutante; mismo plano de control</text>
+  </g>
+  <g id="overlay-durable" class="extension-layer" aria-hidden="true" hidden="hidden">
+    <rect class="extension-box" x="742" y="548" width="284" height="87" rx="10" />
+    <text class="extension-title" x="765" y="577">Recuperación durable</text>
+    <text class="extension-copy" x="765" y="600">Estado durable + clave estable</text>
+    <text class="extension-copy" x="765" y="621">Entrega repetible; efecto verificable</text>
+  </g>
+  <g id="overlay-kill" class="extension-layer" aria-hidden="true" hidden="hidden">
+    <line class="danger-mark" x1="716" y1="431" x2="738" y2="473" />
+    <line class="danger-mark" x1="738" y1="431" x2="716" y2="473" />
+    <rect x="574" y="535" width="280" height="48" rx="8" fill="oklch(94% 0.035 28)" stroke="oklch(49% 0.16 28)" stroke-width="2" />
+    <text x="594" y="555" fill="oklch(49% 0.16 28)" font-size="14" font-weight="800">PARADA POR HERRAMIENTA</text>
+    <text x="594" y="575" fill="oklch(39% 0.026 252)" font-size="12.5">bloquea nuevos efectos; revisar los iniciados</text>
+  </g>
+  <g id="overlay-metrics" class="extension-layer" aria-hidden="true" hidden="hidden">
+    <rect class="extension-box" x="45" y="548" width="654" height="87" rx="10" />
+    <text class="extension-title" x="68" y="576">¿Cómo sé que funciona?</text>
+    <text class="extension-copy" x="68" y="600">acción y argumentos · acceso a datos · latencia · costo</text>
+    <text class="extension-copy" x="68" y="622">permisos erróneos · postcondición · duplicados · incertidumbre</text>
+  </g>
+</svg>
+          </div>
+          <figcaption><span><span class="legend-line" aria-hidden="true"></span> Flujo de control</span><span><span class="legend-line dashed" aria-hidden="true"></span> Lectura de verificación</span><span>Conceptual · sin infraestructura desplegada</span></figcaption>
+        </figure>
+        <div class="layers" role="group" aria-label="Capas opcionales del mapa"><span class="eyebrow">Explorar controles</span><button data-layer="readonly" aria-pressed="false">Sólo lectura</button><button data-layer="durable" aria-pressed="false">Recuperación</button><button data-layer="kill" aria-pressed="false">Parada de emergencia</button><button data-layer="metrics" aria-pressed="false">Medición</button><p id="layer-note">Selecciona una capa para ubicar su control en el mapa.</p></div>
+      </div>
+      <aside class="coach" aria-labelledby="step-title">
+        <div class="coach-heading"><p class="eyebrow">Lectura del mapa</p><span id="step-index">01 / 07</span></div>
+        <h2 id="step-title">La frontera es una decisión de diseño</h2>
+        <p id="step-copy"></p>
+        <div class="review-question"><span class="eyebrow">Pregunta de revisión</span><p id="step-question"></p></div>
+        <a class="coach-link" href="../demo/index.html">Ensayar este control <span aria-hidden="true">↗</span></a>
+        <p class="keyboard-hint">Recorrido: ← → · inicio: Home · mapa completo: End</p>
+      </aside>
+    </section>
+    <section class="case-study" aria-labelledby="case-title">
+      <div><p class="eyebrow">Un caso para ponerlo a prueba</p><h2 id="case-title">El pago ya ocurrió.<br>Falta la confirmación.</h2><p>El efecto permitido es conciliar la confirmación. Una respuesta convincente, un documento o una aprobación no autorizan un segundo débito.</p><a class="button primary" href="../demo/index.html">Probar los ocho escenarios <span aria-hidden="true">→</span></a></div>
+      <ol class="case-sequence"><li><span>01</span><div><strong>Consultar el estado</strong><p>Evidencia autorizada, vigente y ligada a la operación.</p></div></li><li><span>02</span><div><strong>Autorizar un efecto exacto</strong><p>Acción, recurso, versión, aprobador y vencimiento.</p></div></li><li><span>03</span><div><strong>Verificar antes de concluir</strong><p>Si la respuesta se pierde, conciliar por lectura.</p></div></li></ol>
+    </section>
+    <section class="reading" aria-labelledby="reading-title"><div><p class="eyebrow">Del mapa a la implementación</p><h2 id="reading-title">Abrir el detalle.</h2><p>Cada vista responde una pregunta distinta. El tablero organiza los controles; Archify permite explorar sus relaciones.</p></div><div class="reading-links"><a href="../architecture/conceptual.html"><span>01 / ARCHIFY</span><strong>Arquitectura conceptual</strong><span aria-hidden="true">↗</span></a><a href="../architecture/target.html"><span>02 / ARCHIFY</span><strong>Arquitectura objetivo</strong><span aria-hidden="true">↗</span></a><a href="../architecture/evaluation-lab.html"><span>03 / ARCHIFY</span><strong>AI Evaluation Lab</strong><span aria-hidden="true">↗</span></a><a href="../docs/controls.md"><span>04 / DOCUMENTACIÓN</span><strong>Matriz de controles</strong><span aria-hidden="true">↗</span></a></div></section>
+    <details class="text-description"><summary>Descripción textual del tablero y alcance del ejercicio</summary><p>Un canal autenticado entrega contexto autorizado al modelo. La recuperación documental es opcional y no concede permiso de acción. La salida pasa como propuesta tipada por una ruta gobernada. Fuera del modelo, identidad, política, aprobación según riesgo y API de dominio verifican permisos y estado antes de actuar sobre el sistema de registro. Una lectura independiente comprueba la postcondición; la auditoría correlaciona decisiones y resultados.</p><p>Las capas ubican lecturas, recuperación, parada y medición como requisitos de diseño. La demo local ilustra reglas con respuestas predeterminadas; no demuestra aislamiento, identidad real ni un único efecto remoto garantizado. AI Evaluation Lab es un diseño separado, todavía conceptual.</p></details>
+    <p class="sr-only" id="step-announcement" role="status" aria-live="polite"></p>
+  </main>
+  <footer><span>AI Financial Services Implementation</span><span>Diseño explicable · simulación local · evidencia verificable</span><a href="../README.md">Leer la documentación ↗</a></footer>
+</body>
+</html>
