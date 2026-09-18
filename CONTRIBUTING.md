@@ -10,3 +10,7 @@ Proponer cambios mediante pull request. Explicar el control afectado, el comport
 - No ejecutar Terraform ni conectar un core como efecto de una prueba o de CI.
 
 La documentación debe identificar una capacidad como implementada, simulada o propuesta. Una prueba de formato o un diagrama no demuestran seguridad operativa.
+
+## Licencia de las contribuciones
+
+Salvo indicación expresa en contrario, las contribuciones enviadas intencionalmente para su inclusión se ofrecen bajo [Apache License 2.0](LICENSE), conforme a su sección 5. Contribuir únicamente material que se tenga derecho a aportar y conservar los avisos de autoría y las licencias de terceros. Documentar las dependencias o recursos incorporados y sus condiciones de redistribución; consultar el [alcance de la licencia](README.md#licencia) y [NOTICE](NOTICE).

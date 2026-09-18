@@ -1,6 +1,7 @@
 # AI Financial Services Implementation
 
 [![Verificación](https://github.com/sjaramillov/ai-financial-services-implementation/actions/workflows/verify.yml/badge.svg)](https://github.com/sjaramillov/ai-financial-services-implementation/actions/workflows/verify.yml)
+[Licencia: Apache 2.0](LICENSE)
 
 Controles para diseñar, evaluar y operar soluciones de IA en servicios financieros. Un repositorio educativo con tablero, simulación local, arquitectura conceptual, arquitectura objetivo y una base de infraestructura como código.
 
@@ -70,3 +71,14 @@ Para los comandos de validación de arquitectura y Terraform, ver los README de 
 | `tests/`, `scripts/` | Pruebas del simulador y verificaciones de publicación |
 
 Los datos de los ejercicios son sintéticos. Este repositorio no presta servicios financieros ni ejecuta operaciones reales.
+
+## Licencia
+
+Copyright 2026 Sebastián Jaramillo. El material propio de este repositorio —código, documentación, diagramas y configuración Terraform— se distribuye bajo [Apache License 2.0](LICENSE). Ver también [NOTICE](NOTICE).
+
+Los componentes de terceros conservan sus licencias y avisos:
+
+- El código del visor generado con Archify conserva su [licencia MIT](architecture/ARCHIFY-LICENSE.txt).
+- Las tipografías Bricolage Grotesque, Atkinson Hyperlegible y Archivo conservan [SIL Open Font License 1.1](board/assets/fonts/FONT-LICENSES.txt), incluidas las copias incrustadas en `board/preview.svg`.
+
+Apache 2.0 no sustituye esas licencias. Las contribuciones deben respetar este alcance; consultar [CONTRIBUTING.md](CONTRIBUTING.md).
