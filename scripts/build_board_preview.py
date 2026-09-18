@@ -45,6 +45,15 @@ def build():
     root = ET.Element('svg', {'xmlns': SVG, 'width': '1520', 'height': '962', 'viewBox': '0 0 1520 962', 'role': 'img', 'aria-labelledby': 'preview-title preview-desc'})
     ET.SubElement(root, 'title', id='preview-title').text = 'La frontera de autoridad — tablero de controles de IA financiera'
     ET.SubElement(root, 'desc', id='preview-desc').text = 'El modelo propone. Identidad, política, revisión humana y API de dominio autorizan el efecto. Una lectura independiente verifica el resultado y la auditoría registra la cadena. Diseño de referencia con datos sintéticos.'
+    # Keep applicable notices inside the image when it is distributed on its own.
+    project_notice = '\n'.join((ROOT / 'NOTICE').read_text(encoding='utf-8').splitlines()[:2])
+    notices = (
+        project_notice + '\n\nOriginal diagram: Apache License 2.0.\n'
+        + (ROOT / 'LICENSE').read_text(encoding='utf-8')
+        + '\n\nEmbedded fonts: separate SIL Open Font License 1.1 notices.\n'
+        + (BOARD / 'assets/fonts/FONT-LICENSES.txt').read_text(encoding='utf-8')
+    )
+    ET.SubElement(root, 'metadata', id='license-notices').text = '\n'.join(line.rstrip() for line in notices.splitlines())
     ET.SubElement(root, 'style').text = styles
     defs = ET.SubElement(root, 'defs')
     grid = ET.SubElement(defs, 'pattern', id='paper-grid', width='28', height='28', patternUnits='userSpaceOnUse')

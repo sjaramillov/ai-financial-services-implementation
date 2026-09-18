@@ -34,4 +34,4 @@ Después de modificar el mapa o sus estilos, actualizar la imagen del README des
 python3 scripts/build_board_preview.py
 ```
 
-El generador copia el SVG del tablero, muestra sus siete pasos, omite las capas opcionales e incorpora los estilos y fuentes locales. `preview.svg` es una imagen estática sin JavaScript ni llamadas externas. Es material de referencia y simulación, no evidencia de una implementación productiva.
+El generador copia el SVG del tablero, muestra sus siete pasos, omite las capas opcionales e incorpora los estilos y fuentes locales. Incluye en los metadatos la licencia Apache 2.0 del diagrama y los avisos completos SIL OFL de las fuentes para su redistribución independiente. `preview.svg` es una imagen estática sin JavaScript ni llamadas externas. Es material de referencia y simulación, no evidencia de una implementación productiva.
