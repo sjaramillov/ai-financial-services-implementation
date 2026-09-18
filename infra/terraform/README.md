@@ -49,6 +49,8 @@ terraform test
 
 `init` descarga el proveedor público y verifica su firma; requiere red hacia el registro, sin acceder a AWS. El archivo `.terraform.lock.hcl` fija la versión/checksums seleccionados y se versiona. `validate` comprueba esquema y referencias. Cada ejecución de `tests/controls.tftest.hcl` usa `mock_provider "aws"`: incluso el `command = apply` de esa prueba solo rellena atributos calculados en memoria, sin llamadas AWS. Nunca ejecutar pruebas con un proveedor real reemplazando ese mock. [Mecanismo de mocks de Terraform](https://developer.hashicorp.com/terraform/language/tests/mocking).
 
+El lock incluye hashes del contenido (`h1`) para macOS ARM64 y Linux AMD64, además de los hashes de ZIP (`zh`). Al actualizar el proveedor, ejecutar `terraform providers lock -platform=darwin_arm64 -platform=linux_amd64` y versionar el resultado. CI usa `-lockfile=readonly`: necesita los hashes de contenido de su plataforma para validar el proveedor ya descomprimido. [Formatos de checksum y plataformas en Terraform](https://developer.hashicorp.com/terraform/language/files/dependency-lock).
+
 Las pruebas comprueban bloqueos de acceso público, versionado, cifrado, listas exactas de permisos, prefijo, condiciones de KMS, TLS, origen de logs y rechazo de identidad compartida/cuenta ajena/placeholders. No prueban efectividad IAM en AWS, entrega real de logs, restauración ni disponibilidad.
 
 ## Antes de una implementación real

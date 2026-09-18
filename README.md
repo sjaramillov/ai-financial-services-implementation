@@ -1,5 +1,7 @@
 # AI Financial Services Implementation
 
+[![Verificación](https://github.com/sjaramillov/ai-finantial-services-implementation/actions/workflows/verify.yml/badge.svg)](https://github.com/sjaramillov/ai-finantial-services-implementation/actions/workflows/verify.yml)
+
 Controles para diseñar, evaluar y operar soluciones de IA en servicios financieros. Un repositorio educativo con tablero, simulación local, arquitectura conceptual, arquitectura objetivo y una base de infraestructura como código.
 
 **Principio central:** el modelo propone; el dominio autoriza y registra el efecto. La aprobación humana complementa los controles de identidad, política y estado de la operación.
