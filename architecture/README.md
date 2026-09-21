@@ -4,11 +4,11 @@ Estas vistas explican cómo mantener la autoridad de negocio fuera del modelo de
 
 | Vista | Pregunta | Interactiva | Fuente editable |
 |---|---|---|---|
-| Conceptual · ejercicio A | ¿Quién puede decidir, aprobar y producir un efecto? | [Abrir](conceptual.html) | [JSON](conceptual.architecture.json) |
-| Objetivo cloud · ejercicio A | ¿Dónde deben imponerse identidad, política, aislamiento y trazabilidad? | [Abrir](target.html) | [JSON](target-cloud.architecture.json) |
-| AI Evaluation Lab · ejercicio B | ¿Cómo reservar, ejecutar, publicar y limpiar una evaluación reproducible? | [Abrir](evaluation-lab.html) | [JSON](evaluation-lab.architecture.json) |
+| Conceptual · ejercicio A | ¿Quién puede decidir, aprobar y producir un efecto? | [Abrir en GitHub Pages](https://sjaramillov.github.io/ai-financial-services-implementation/architecture/conceptual.html) | [JSON](conceptual.architecture.json) |
+| Objetivo cloud · ejercicio A | ¿Dónde deben imponerse identidad, política, aislamiento y trazabilidad? | [Abrir en GitHub Pages](https://sjaramillov.github.io/ai-financial-services-implementation/architecture/target.html) | [JSON](target-cloud.architecture.json) |
+| AI Evaluation Lab · ejercicio B | ¿Cómo reservar, ejecutar, publicar y limpiar una evaluación reproducible? | [Abrir en GitHub Pages](https://sjaramillov.github.io/ai-financial-services-implementation/architecture/evaluation-lab.html) | [JSON](evaluation-lab.architecture.json) |
 
-Los HTML se pueden abrir localmente. Incluyen búsqueda, selección de componentes, relaciones y vistas guiadas. En GitHub, descargar el archivo o usar el servidor local indicado en el README principal. La prosa del modelo está en español; los controles fijos del visor y el atributo de idioma del HTML permanecen en inglés por una limitación de Archify.
+Los visores publicados en GitHub Pages incluyen búsqueda, selección de componentes, relaciones y vistas guiadas. GitHub no ejecuta el HTML interactivo dentro del README ni en la vista de código; por eso la portada enlaza a Pages. También se pueden abrir localmente con el servidor indicado en el README principal. La prosa del modelo está en español; los controles fijos del visor y el atributo de idioma del HTML permanecen en inglés por una limitación de Archify.
 
 ## ArchiMate y Archify
 
