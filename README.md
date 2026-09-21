@@ -5,17 +5,19 @@
 
 Controles para diseñar, evaluar y operar soluciones de IA en servicios financieros. Un repositorio educativo con tablero, simulación local, arquitectura conceptual, arquitectura objetivo y una base de infraestructura como código.
 
-[![Tablero de controles: la frontera de autoridad entre el modelo y los sistemas financieros](board/preview.svg)](board/README.md)
+[![Tablero de controles: la frontera de autoridad entre el modelo y los sistemas financieros](board/preview.svg)](https://sjaramillov.github.io/ai-financial-services-implementation/)
 
-*Vista del tablero. [Consultar el recorrido y sus controles](board/README.md).*
+*Vista del tablero. [Abrir la experiencia interactiva](https://sjaramillov.github.io/ai-financial-services-implementation/) · [Consultar su guía](board/README.md).*
+
+[Arquitectura conceptual interactiva](https://sjaramillov.github.io/ai-financial-services-implementation/architecture/conceptual.html) · [Arquitectura objetivo interactiva](https://sjaramillov.github.io/ai-financial-services-implementation/architecture/target.html) · [AI Evaluation Lab interactivo](https://sjaramillov.github.io/ai-financial-services-implementation/architecture/evaluation-lab.html)
 
 **Principio central:** el modelo propone; el dominio autoriza y registra el efecto. La aprobación humana complementa los controles de identidad, política y estado de la operación.
 
 ## Recorrido
 
-1. Abrir el [Tablero](board/index.html) para presentar el problema y recorrer los controles.
+1. Abrir el [tablero interactivo publicado](https://sjaramillov.github.io/ai-financial-services-implementation/) para presentar el problema y recorrer los controles.
 2. Ejecutar la [demo local](demo/index.html) siguiendo el [ejercicio documentado](demo/README.md).
-3. Explorar las [arquitecturas interactivas y el modelo ArchiMate](architecture/README.md).
+3. Explorar la [arquitectura conceptual interactiva](https://sjaramillov.github.io/ai-financial-services-implementation/architecture/conceptual.html) y consultar las [fuentes Archify y el modelo ArchiMate](architecture/README.md).
 4. Revisar la [matriz de controles](docs/controls.md), las [amenazas](docs/threat-model.md) y los [criterios para un piloto](docs/acceptance.md).
 5. Consultar [Terraform y sus valores a reemplazar](infra/terraform/README.md).
 
