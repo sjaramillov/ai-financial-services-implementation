@@ -74,7 +74,7 @@ Los datos de los ejercicios son sintéticos. Este repositorio no presta servicio
 
 ## Licencia
 
-Copyright 2026 Sebastián Jaramillo. El material propio de este repositorio —código, documentación, diagramas y configuración Terraform— se distribuye bajo [Apache License 2.0](LICENSE). Ver también [NOTICE](NOTICE).
+Copyright 2026 Sebastian Jaramillo Valderrama. El material propio de este repositorio —código, documentación, diagramas y configuración Terraform— se distribuye bajo [Apache License 2.0](LICENSE). Ver también [NOTICE](NOTICE).
 
 Los componentes de terceros conservan sus licencias y avisos:
 
